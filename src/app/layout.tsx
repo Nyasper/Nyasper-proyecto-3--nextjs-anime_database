@@ -5,7 +5,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-slate-900 pt-16`}>
+      <body className={`${inter.className} bg-gradient-to-b from-slate-900 to-slate-950 pt-16 min-h-screen`}>
         <Navbar />
         {children}
         </body>
@@ -27,4 +27,4 @@ export const metadata: Metadata = {
 }
 
 //Components
-import Navbar from '@/components/navbar'
+import Navbar from './navbar'

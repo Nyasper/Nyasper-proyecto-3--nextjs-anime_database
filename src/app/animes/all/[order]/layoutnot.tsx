@@ -8,14 +8,10 @@ export default function OrderLayout({children}:any){
   }
 
   return(
-    <>
-    <HamburguerMenu state={activedMenu} click={changeMenu} />
-    <AsideBar state={activedMenu} click={changeMenu} hidden={hiddenMenu} />
+    <div className="flex flex-row bg-purple-800 ">
     {children}
-    </>
+    </div>
   )
 }
 
 import { useState } from "react"
-import AsideBar from "@/components/asideBar"
-import HamburguerMenu from "@/components/hamburguerMenu"

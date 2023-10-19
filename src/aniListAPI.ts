@@ -1,9 +1,9 @@
 //DOCUMENTATION : https://anilist.github.io/ApiV2-GraphQL-Docs/
 const url = 'https://graphql.anilist.co'
 
-export async function searchAnime( search:string|null , order:animeOrder , page:number , perPage:number):Promise<animeQuery> {
+export async function getAllAnimes( page:number , perPage:number , order:animeOrder):Promise<getAllAnimesQuery> {
 const query =`
-query ($id: Int, $page: Int, $perPage: Int, $search: String, $genre: String  , $type : MediaType , $isAdult : Boolean ){
+query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType , $isAdult : Boolean ){
   Page (page: $page, perPage: $perPage) {
     pageInfo {
       total
@@ -12,7 +12,7 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String, $genre: String  , $
       hasNextPage
       perPage
     },
-    media (sort: [${order}],id: $id, search: $search , genre: $genre , type: $type ,  isAdult: $isAdult ){
+    media ( sort:[${order}] , id: $id, genre: $genre , type: $type ,  isAdult: $isAdult ){
       id,
       title {
         romaji,
@@ -25,7 +25,6 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String, $genre: String  , $
       status,
       popularity,
       episodes,
-      chapters,
       popularity,
       genres,
       isAdult,
@@ -38,9 +37,9 @@ query ($id: Int, $page: Int, $perPage: Int, $search: String, $genre: String  , $
 }`
 
 const variables = {
-  search,
   page,
   perPage, //max 50
+  order,
   type: 'ANIME',
   isAdult:false
 };
@@ -59,13 +58,74 @@ const options = {
     };
 
 const res = await fetch(url, options)
-let {data} = await res.json() 
+const {data} = await res.json() 
+  return data
+}
+
+export async function getAnimesBySearch(search:FormDataEntryValue|null , page:number, perPage:number):Promise<getAllAnimesQuery>{
+  const query =`
+query ( $page: Int, $perPage: Int , $search: String , $type : MediaType ,$isAdult : Boolean ){
+  Page (page: $page, perPage: $perPage) {
+    pageInfo {
+      total
+      currentPage
+      lastPage
+      hasNextPage
+      perPage
+    },
+    media (search: $search , type: $type , isAdult: $isAdult ){
+      id,
+      title {
+        romaji,
+        english
+      },
+      type,
+      format,
+      season,
+      seasonYear,
+      status,
+      popularity,
+      episodes,
+      popularity,
+      genres,
+      isAdult,
+      bannerImage,
+      coverImage{
+      large,
+      extraLarge
+      }
+    }
+  }
+}`
+
+const variables = {
+  page,
+  perPage, //max 50
+  type: 'ANIME',
+  search,
+  isAdult:false
+};
+
+// Define the config we'll need for our Api request
+const options = {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+  },
+  body: JSON.stringify({
+      query: query,
+      variables: variables
+  })
+    };
+
+const res = await fetch(url, options)
+const {data} = await res.json() 
   return data
 }
 
 
-
-export async function getCharactersFromAnimeId(id:number , order:characterOrder){
+export async function getAnimeInfoByAnimeId(id:number,pageNumber:number):Promise<getAnimeInfoByAnimeIdQuery>{
   const query =`
   query ($id: Int, $page: Int, $perPage: Int ,  ){
     Page (page: $page, perPage: $perPage) {
@@ -92,20 +152,15 @@ export async function getCharactersFromAnimeId(id:number , order:characterOrder)
         chapters,
         popularity,
         genres,
-        isAdult,
         bannerImage,
         coverImage{
         large, extraLarge
         },
-        characters(page:1,perPage:50, sort:[${order}]){
+        characters(page:${pageNumber},perPage:20,sort:[ID]){
           nodes{
             id,
-            name{ first,last, full, native , alternative },
-            gender,
-            age,
-            image{ medium , large },
-            dateOfBirth {day,month},
-            siteUrl
+            name{ full },
+            image{ large },
           }
         }
       }
@@ -115,8 +170,7 @@ export async function getCharactersFromAnimeId(id:number , order:characterOrder)
 
 const variables = {
   id,
-  page:1,
-  perPage:20, //max 20
+  page:1
 };
 
 // Define the config we'll need for our Api request
@@ -134,12 +188,12 @@ const options = {
 
 }
 const res = await fetch(url, options)
-let {data} = await res.json() 
+const {data} = await res.json() 
   return data
 }
 
 
-export async function getCharacterInfo(id:number):Promise<getCharacterInfo>{
+export async function getCharacterInfoByID(id:number):Promise<getCharacterInfoByIDQuery>{
   const query =`
   query ( $id: Int ){
         Character( id : $id ){
@@ -149,7 +203,7 @@ export async function getCharacterInfo(id:number):Promise<getCharacterInfo>{
             age,
             image{ medium , large },
             dateOfBirth {day,month},
-            description,
+            description(asHtml: true),
             siteUrl
         }
   }`
@@ -172,15 +226,15 @@ const options = {
 
 }
 const res = await fetch(url, options)
-let {data} = await res.json() 
+const {data} = await res.json() 
   return data
 }
 
 
 
-interface getCharacterInfo{
+interface getCharacterInfoByIDQuery{
   Character:characterQuery
 }
 
 
-import {  animeQuery , characterQuery , animeOrder , characterOrder } from "./interfaces";
+import {  getAllAnimesQuery , getAnimeInfoByAnimeIdQuery , characterQuery , animeOrder , characterOrder } from "./interfaces";

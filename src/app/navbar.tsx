@@ -20,7 +20,7 @@ const links:linkInterface[] = [
 ]
   return(
     <nav>     
-      <ul className="flex justify-start w-full gap-8 p-5 items-center bg-blue-800 fixed z-40 bg-transparent top-0" >
+      <ul className="flex justify-start w-full gap-8 p-5 items-center bg-blue-800 fixed z-40 top-0" >
       <li className="ml-20">LOGO</li>
         {links.map(link=>(
           <li key={link.name}>
@@ -34,6 +34,6 @@ const links:linkInterface[] = [
     </nav>
   )
 }
-import HamburguerMenu from "./hamburguerMenu"
+import HamburguerMenu from "../components/hamburguerMenu"
 import Link from "next/link"
 import { linkInterface } from "@/interfaces"

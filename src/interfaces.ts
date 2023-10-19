@@ -18,24 +18,24 @@ export interface Anime {
 
 
 
-interface title {
+export interface title {
   romaji:string,
   english:string|null
 }
 
-interface coverImage{
+export interface coverImage{
   large:string,
   extraLarge:string
 }
 
-type Status = 
+export type Status = 
   'FINISHED'|
   'RELEASING'|
   'NOT_YET_RELEASED'|
   'CANCELLED'|
   'HIATUS'
 
-type Format =
+export type Format =
   'TV'|
   'TV_SHORT'| 
   'MOVIE'| 
@@ -47,9 +47,9 @@ type Format =
   'NOVEL'|
   'ONE_SHOT'
 
-  type Type = 'ANIME'|'MANGA'
+  export type Type = 'ANIME'|'MANGA'
 
-  type Season = 'WINTER'|'SPRING'|'SUMMER'|'FALL'
+  export type Season = 'WINTER'|'SPRING'|'SUMMER'|'FALL'
 
 
   export interface pageInfo {
@@ -61,7 +61,9 @@ type Format =
     order?:animeOrder //opcional
   }
 
-  export interface animeQuery {
+
+//QUERIES
+  export interface getAllAnimesQuery {
     Page: {
       pageInfo:pageInfo,
       media:Anime[],
@@ -69,15 +71,8 @@ type Format =
     },
   }
 
-export interface getCharactersFromAnimeID{
-    Page: {
-      pageInfo:pageInfo,
-      media:Anime[],
-    },
-}
 
-
-export interface AnimeCharacters extends Anime{
+export interface getAnimeInfoByAnimeIdQuery extends Anime{
   Page: {
     pageInfo:pageInfo,
     media:[{
@@ -90,7 +85,6 @@ export interface AnimeCharacters extends Anime{
       status:Status,
       popularity:number,
       episodes:number|null,
-      chapters:number|null,
       genres:string[],
       isAdult:boolean,
       bannerImage:string,
@@ -107,8 +101,7 @@ export interface characterQuery{
     name: { 
       first:string,last:string,
       full:string,
-      native:string,
-      alternative:string
+      native:string
     },
     gender:string,
     age:string,
@@ -161,20 +154,13 @@ export type characterOrder =
 
 export interface linkInterface { name:string, route:string }
 
-export interface params {
-  params: {
-    order: `${animeOrder}-${number}`;
-  }
-}
+
 export interface propsState{
   state:boolean
   click?:MouseEventHandler
   hidden?:MouseEventHandler
   params?:string
 }
-
-
-
 
 
 interface searchAnime{
