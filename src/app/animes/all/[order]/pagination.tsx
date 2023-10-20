@@ -1,9 +1,8 @@
 export default function Pagination(props:pageInfo){
 
 
-// console.log(`pagina actual ${props.currentPage}\nultima pagina ${props.lastPage}\nPaginas totales: ${props.total}\ny el orden es ${props.order}\npor pagina: ${props.perPage}`)
+if (props){
   
-
 const pageShow = 10  //how to links show in the page buttons
 const pageNumbers = [] //Array with the page numbers
 //generate page numbers back
@@ -20,8 +19,6 @@ for (let i = props.currentPage+1; i <= Math.min(props.currentPage + pageShow/2, 
     pageNumbers.push(i);
   }
 }
-
-
   return (
     <ul className="flex gap-8 justify-center p-6 w-max bg-blue-950 mx-auto rounded-xl">
       <li><Link href={`./${props.order}-1`}>Primera</Link></li>
@@ -33,7 +30,9 @@ for (let i = props.currentPage+1; i <= Math.min(props.currentPage + pageShow/2, 
       <li><Link href={`./${props.order}-${props.lastPage}`}>Ultima</Link></li>
     </ul>
   )
+} else return null
 }
+
 
 import { pageInfo } from "@/interfaces"
 import Link from "next/link"

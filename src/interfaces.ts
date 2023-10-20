@@ -9,7 +9,22 @@ export interface Anime {
   status:Status,
   popularity:number,
   episodes:number|null,
-  chapters:number|null,
+  genres:string[],
+  isAdult:boolean,
+  bannerImage:string,
+  coverImage:coverImage
+}
+export interface Manga {
+  id:number,
+  title:title,
+  type:Type,
+  format:Format,
+  season:Season,
+  seasonYear:number,
+  status:Status,
+  popularity:number,
+  chapters:number,
+  volumes:number,
   genres:string[],
   isAdult:boolean,
   bannerImage:string,
@@ -71,6 +86,14 @@ export type Format =
     },
   }
 
+  export interface getAllMangasQuery {
+    Page: {
+      pageInfo:pageInfo,
+      media:Anime[],
+      params?:string
+    },
+  }
+
 
 export interface getAnimeInfoByAnimeIdQuery extends Anime{
   Page: {
@@ -118,6 +141,19 @@ export interface characterQuery{
    }
 
 
+  export interface getAllCharactersInterface{
+    Page: {
+      pageInfo:pageInfo,
+      media:[{
+        id:number,
+        title:{romaji:string},
+        popularity:number,
+        characters:{
+          nodes:characterQuery[]
+        }
+      }]
+    }
+  }
 
 
   export type animeOrder = 

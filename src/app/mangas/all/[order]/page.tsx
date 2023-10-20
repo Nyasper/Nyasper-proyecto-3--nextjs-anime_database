@@ -1,4 +1,4 @@
-export default async function AnimePage({params}:params){
+export default async function MangaListPage({params}:params){
 
   const order:animeOrder = params.order.split('-')[0] as animeOrder
   const page = parseInt(params.order.split('-')[1])
@@ -7,13 +7,14 @@ export default async function AnimePage({params}:params){
   // const paginasTotales = Math.ceil(characters.length/5)
   //muestra las paginas totales para todos los personajes de ese anime
 
-  const Animes:getAllAnimesQuery = await getAllAnimes(page,50,order)
-  const pageInfo = Animes.Page.pageInfo
+  const Mangas:getAllAnimesQuery = await getAllMangas(page,50,order)
+  const pageInfo = Mangas.Page.pageInfo
 
-  return Animes ? (
+  if (Mangas.Page){
+    return (
       <div className="flex flex-col items-center justify-center">
         <AnimesList
-          getAllAnimes={Animes}
+          getAllAnimes={Mangas}
           order={order}
           title={`Order by: ${order}`}
         />
@@ -26,10 +27,12 @@ export default async function AnimePage({params}:params){
           order={order}
         />
       </div>
-    ) : (
-      <DefaultNotFound />
     )
+  } else return(
+    <h1>No data Found</h1>
+  )
 }
+
 
 interface params {
   params:{
@@ -40,7 +43,6 @@ interface params {
 
 
 import { pageInfo , animeOrder, getAllAnimesQuery} from "@/interfaces"
-import { getAllAnimes } from "@/aniListAPI"
-import AnimesList from "./animesList"
-import Pagination from "./pagination"
-import DefaultNotFound from "./defaultNotFound"
+import { getAllMangas } from "@/aniListAPI"
+import AnimesList from "@/app/animes/all/[order]/animesList"
+import Pagination from "@/app/animes/all/[order]/pagination"
