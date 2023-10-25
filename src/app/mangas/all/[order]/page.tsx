@@ -7,14 +7,14 @@ export default async function MangaListPage({params}:params){
   // const paginasTotales = Math.ceil(characters.length/5)
   //muestra las paginas totales para todos los personajes de ese anime
 
-  const Mangas:getAllAnimesQuery = await getAllMangas(page,50,order)
+  const Mangas:getAllAnimesQuery = await getAllMedia('MANGA',page,50,order)
   const pageInfo = Mangas.Page.pageInfo
 
   if (Mangas.Page){
     return (
       <div className="flex flex-col items-center justify-center">
-        <AnimesList
-          getAllAnimes={Mangas}
+        <MangasList
+          getAllMangas={Mangas}
           order={order}
           title={`Order by: ${order}`}
         />
@@ -43,6 +43,6 @@ interface params {
 
 
 import { pageInfo , animeOrder, getAllAnimesQuery} from "@/interfaces"
-import { getAllMangas } from "@/aniListAPI"
-import AnimesList from "@/app/animes/all/[order]/animesList"
+import { getAllMedia } from "@/aniListAPI"
+import MangasList from "../mangasList"
 import Pagination from "@/app/animes/all/[order]/pagination"

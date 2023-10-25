@@ -6,7 +6,7 @@ export default function CharactersList(props:props){
       {props.Page.media[0].characters.nodes.map(character=>(
         <li key={character.id}>
           <p className="text-lg text-center py-1">{character.name.full}</p>
-          <Link href={`/animes/all/${props.order}/${props.animeID}/${character.id}`}>
+          <Link href={`/${props.mediaType}/all/${props.order}/${props.mediaID}/${character.id}`}>
             <Image
               src={character.image.large}
               width={208}
@@ -44,8 +44,9 @@ interface props{
       }
     }]
   }
-  animeID:number,
+  mediaID:number,
   order:string,
+  mediaType:"animes"|"mangas"
   characterPage:number
 }
 

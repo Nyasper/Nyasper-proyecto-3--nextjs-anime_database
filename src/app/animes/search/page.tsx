@@ -50,3 +50,4 @@ import SearchFormComponent from "./searchFormComponent"
 import { redirect } from "next/navigation";
 import Link from "next/link"
 import { animeOrder } from "@/interfaces"
+import search from "../all/[order]/search"

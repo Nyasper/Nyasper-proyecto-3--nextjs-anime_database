@@ -1,12 +1,12 @@
 export default async function AnimePage({params}:params ){
 
-    const {animeID} = params 
+    const {mangaID} = params 
     const {order} = params
-    const {Page} = await getMediaInfoByID(animeID,1)
+    const {Page} = await getMediaInfoByID(mangaID,1)
     const animeCharactersPages = [
-      await getMediaInfoByID(animeID,1),
-      await getMediaInfoByID(animeID,2),
-      await getMediaInfoByID(animeID,3)
+      await getMediaInfoByID(mangaID,1),
+      await getMediaInfoByID(mangaID,2),
+      await getMediaInfoByID(mangaID,3)
     ]
     return (
       <div>
@@ -15,24 +15,24 @@ export default async function AnimePage({params}:params ){
         />
         <CharactersList
           Page={animeCharactersPages[0].Page}
-          mediaID={animeID}
+          mediaID={mangaID}
           order={order}
           characterPage={1}
-          mediaType="animes"
+          mediaType="mangas"
         />
         <CharactersList
           Page={animeCharactersPages[1].Page}
-          mediaID={animeID}
+          mediaID={mangaID}
           order={order}
           characterPage={2}
-          mediaType="animes"
+          mediaType="mangas"
         />
         <CharactersList
           Page={animeCharactersPages[2].Page}
-          mediaID={animeID}
+          mediaID={mangaID}
           order={order}
           characterPage={3}
-          mediaType="animes"
+          mediaType="mangas"
         />
       </div>
     )
@@ -41,12 +41,12 @@ export default async function AnimePage({params}:params ){
   interface params {
     params:{
       order:animeOrder,
-      animeID:number
+      mangaID:number
     }
 }
 
 
 import { getMediaInfoByID } from "@/aniListAPI"
-import CharactersList from "./charactersList"
-import MediaInfo from "./mediaInfo"
+import CharactersList from "@/app/animes/all/[order]/[animeID]/charactersList"
+import MediaInfo from "@/app/animes/all/[order]/[animeID]/mediaInfo"
 import { animeOrder } from "@/interfaces"

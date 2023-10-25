@@ -14,7 +14,7 @@ const links:linkInterface[] = [
     <nav className="pb-3">     
       <ul className="flex justify-start w-full gap-8 p-4 items-center bg-blue-800 fixed z-40 top-0 rounded-b-full shadow-md shadow-gray-950" >
       <li className="ml-20">LOGO</li>
-      <li><Link href={'/home'}>Home</Link></li>
+      <li><Link href={'/'}>Home</Link></li>
       <li className="relative group py-2">
           <span className="cursor-pointer mr-1">Animes
             <span className="w-0 h-0 cursor-pointer border-t-[6px] border-b-[6px] border-r-[8px]  border-b-transparent border-t-transparent border-r-white -rotate-90 absolute left-max ml-2    mt-2">
@@ -33,6 +33,7 @@ const links:linkInterface[] = [
             </span>
           </span>
           <ul className="hidden transition group-hover:block absolute left-0 mt-2 bg-blue-950 rounded-xl">
+            <li className="w-full mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/mangas/search'}>Buscar un Manga</Link></li>
             <li className="w-max mx-auto p-2 px-4 hover:bg-sky-400 rounded-xl"><Link href={'/mangas/all/POPULARITY_DESC-1'}>listar todos los mangas</Link></li>
           </ul>
       </li>

@@ -108,6 +108,8 @@ export interface getAnimeInfoByAnimeIdQuery extends Anime{
       status:Status,
       popularity:number,
       episodes:number|null,
+      chapters:number|null,
+      volumes:number|null
       genres:string[],
       isAdult:boolean,
       bannerImage:string,

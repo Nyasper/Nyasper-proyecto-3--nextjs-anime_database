@@ -7,7 +7,7 @@ export default async function AnimePage({params}:params){
   // const paginasTotales = Math.ceil(characters.length/5)
   //muestra las paginas totales para todos los personajes de ese anime
 
-  const Animes:getAllAnimesQuery = await getAllAnimes(page,50,order)
+  const Animes:getAllAnimesQuery = await getAllMedia("ANIME",page,50,order)
   const pageInfo = Animes.Page.pageInfo
 
   return Animes ? (
@@ -40,7 +40,7 @@ interface params {
 
 
 import { pageInfo , animeOrder, getAllAnimesQuery} from "@/interfaces"
-import { getAllAnimes } from "@/aniListAPI"
+import { getAllMedia } from "@/aniListAPI"
 import AnimesList from "./animesList"
 import Pagination from "./pagination"
 import DefaultNotFound from "./defaultNotFound"
