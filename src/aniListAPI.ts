@@ -14,6 +14,7 @@ query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType
     },
     media ( sort:[${order}] , id: $id, genre: $genre , type: $type ,  isAdult: $isAdult ){
       id,
+      type,
       title { romaji },
       season,
       seasonYear,
@@ -23,7 +24,7 @@ query ($id: Int, $page: Int, $perPage: Int,  $genre: String  , $type : MediaType
       popularity,
       coverImage{
       large
-      },
+      }
     }
   }
 }`

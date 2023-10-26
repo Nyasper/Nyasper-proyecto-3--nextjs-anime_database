@@ -8,28 +8,24 @@ export default async function animePages(){
 
   const linksOrders:LinkOrder[] = [
   { 
-    textContent:"Por Nombre",
+    textContent:"name",
     href:"/animes/all/TITLE_ROMAJI-1"
   },
   {
-    textContent:"Por Popularidad",
+    textContent:"popularity",
     href:"/animes/all/POPULARITY_DESC-1"
   },
   {
-    textContent:"Por Episodios",
+    textContent:"numbers of episodes",
     href:"/animes/all/EPISODES_DESC-1"
-  },
-  {
-    textContent:"Por Estado",
-    href:"/animes/all/STATUS_DESC-1"
   }
 ]
 
   return (
-    <div className="flex flex-col px-8 py-4 bg-blue-950 w-max mx-auto my-28 rounded-xl">
-    <h1 className="text-2xl p-1 mb-4" >Buscar un Anime:</h1>
-    <SearchFormComponent action={create} placeHolder="Search a Anime..." />
-    <h2 className="text-lg mt-5">Listar todos los animes:</h2>
+    <div className="flex flex-col px-8 py-4 bg-blue-950 w-max mx-auto md:my-28 rounded-xl max-sm:w-full">
+    <h1 className="text-2xl p-1 mb-4" >Search Anime:</h1>
+    <SearchFormComponent action={create} />
+    <h2 className="text-lg mt-5">List animes by:</h2>
     <ul className="p-1 text-sky-400 text-lg">
     {
     linksOrders.map((link)=>(
@@ -50,4 +46,3 @@ import SearchFormComponent from "./searchFormComponent"
 import { redirect } from "next/navigation";
 import Link from "next/link"
 import { animeOrder } from "@/interfaces"
-import search from "../all/[order]/search"

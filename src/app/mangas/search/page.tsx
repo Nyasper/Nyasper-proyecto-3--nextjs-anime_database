@@ -3,28 +3,24 @@ export default async function mangaPages(){
 
   const linksOrders:LinkOrder[] = [
   { 
-    textContent:"Por Nombre",
+    textContent:"name",
     href:"/mangas/all/TITLE_ROMAJI-1"
   },
   {
-    textContent:"Por Popularidad",
+    textContent:"popularity",
     href:"/mangas/all/POPULARITY_DESC-1"
   },
   {
-    textContent:"Por Episodios",
+    textContent:"numbers of chapters",
     href:"/mangas/all/EPISODES_DESC-1"
-  },
-  {
-    textContent:"Por Estado",
-    href:"/mangas/all/STATUS_DESC-1"
   }
 ]
 
   return (
-    <div className="flex flex-col px-8 py-4 bg-blue-950 w-max mx-auto my-28 rounded-xl">
-    <h1 className="text-2xl p-1 mb-4" >Buscar un Manga:</h1>
-    <SearchFormComponent action={searchM} placeHolder="Search a Manga..." />
-    <h2 className="text-lg mt-5">Listar todos los mangas:</h2>
+    <div className="flex flex-col px-8 py-4 bg-blue-950 w-max mx-auto md:my-28 rounded-xl max-sm:w-full">
+    <h1 className="text-2xl p-1 mb-4" >Search Manga:</h1>
+    <SearchFormComponent action={searchM} />
+    <h2 className="text-lg mt-5">List manga by:</h2>
     <ul className="p-1 text-sky-400 text-lg">
     {
     linksOrders.map((link)=>(

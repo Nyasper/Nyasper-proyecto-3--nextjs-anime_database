@@ -2,7 +2,7 @@ export default async function searchMangaPage(){
 
   return (
       <div>
-        <SearchFormComponent action={searchM} placeHolder="Search a Character..."/>
+        <SearchFormComponent action={searchM} />
       </div>
   )
 }

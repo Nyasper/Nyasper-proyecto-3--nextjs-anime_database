@@ -11,7 +11,7 @@ export default async function AnimePage({params}:params){
   const pageInfo = Animes.Page.pageInfo
 
   return Animes ? (
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center pb-10">
         <AnimesList
           getAllAnimes={Animes}
           order={order}
