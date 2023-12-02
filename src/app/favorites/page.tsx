@@ -1,9 +1,16 @@
 'use client'
-export default function FavoritesList(){
+export default function Favorites(){
+  const [favorites, setFavorites] = useState<Anime[]>([]);
 
-const favoritesJSON = localStorage.getItem('favorites');
-const favorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
-  
+  useEffect(() => {
+
+      const favoritesJSON = localStorage.getItem('favorites');
+      const parsedFavorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+      setFavorites(parsedFavorites);
+      
+  }, []);
+
+
   return favorites.length ? (
     <div className="flex flex-col items-center px-8 py-4 bg-blue-950 w-11/12 mx-auto my-28 rounded-xl">
       <h2 className="text-4xl text-center py-2 mb-8">Favorites</h2>
@@ -31,8 +38,8 @@ const favorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
   )
 }
 
-import Link from "next/link";
+import { useEffect , useState } from "react"
 import Image from "next/image";
+import Link from "next/link";
 import FavoriteButton from "../animes/all/[order]/[animeID]/favoriteButton";
-import { Anime } from "@/interfaces";
-import { useEffect } from "react";
+import { Anime ,  } from "@/interfaces";

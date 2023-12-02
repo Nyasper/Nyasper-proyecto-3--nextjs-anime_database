@@ -14,6 +14,7 @@ export default function AnimeList(props: props) {
                 <Image
                   src={animes.coverImage.large?animes.coverImage.large:"/cover-image.png"}
                   fill
+                  sizes="230"
                   alt={`${animes.title.romaji} image`}
                 />
               </Link>
@@ -25,7 +26,7 @@ export default function AnimeList(props: props) {
   )
 }
 
-
+//Image with src "https://s4.anilist.778-82gwrvQV6OBc.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance.
 interface props {
   getAllAnimes: getAllAnimesQuery,
   order: animeOrder,

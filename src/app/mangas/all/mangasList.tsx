@@ -20,6 +20,7 @@ export default function MangasList(props: props) {
                 <Image
                   src={animes.coverImage.large?animes.coverImage.large:"/media-image.jpg"}
                   fill
+                  sizes="230"
                   alt={`${animes.title.romaji} image`}
                 />
               </Link>

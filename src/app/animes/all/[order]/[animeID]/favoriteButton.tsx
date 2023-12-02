@@ -1,10 +1,15 @@
 'use client'
 export default function FavoriteButton(props:props){
 
+  const [favorites, setFavorites] = useState<Anime[]>([]);
 
-  //Obtener los favoritos desde LocalStorage
-  const favoritesJSON = localStorage.getItem('favorites');
-  const favorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+  useEffect(() => {
+    //Obtener los favoritos desde LocalStorage
+    const favoritesJSON = localStorage.getItem('favorites');
+    const parsedFavorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+    setFavorites(parsedFavorites);
+    
+}, []);
   
   // Inicializa el estado de 'favorite' de cada boton en función de si props.mediaInfo está en la lista de favoritos
   const isFavorite = favorites.some((fav) => fav.id == props.mediaInfo.id);
@@ -51,4 +56,4 @@ interface props{
 }
 
 import { Anime } from "@/interfaces";
-import { useState } from "react"
+import { useState , useEffect } from "react"
