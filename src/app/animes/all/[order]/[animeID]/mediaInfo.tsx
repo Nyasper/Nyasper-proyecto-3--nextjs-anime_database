@@ -6,8 +6,8 @@ export default async function MediaInfo(props:props){
       <Image
         className="mx-auto my-8"
         src={props.Page.media[0].bannerImage?props.Page.media[0].bannerImage:"/cover-image.png"}
-        width={200}
-        height={200}
+        width={800}
+        height={400}
         alt={`${props.Page.media[0].title.romaji} banner image`}
       />
     </div>

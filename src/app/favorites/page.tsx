@@ -1,8 +1,8 @@
 'use client'
 export default function FavoritesList(){
 
-  const favoritesJSON = localStorage.getItem('favorites');
-  const favorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
+const favoritesJSON = localStorage.getItem('favorites');
+const favorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
   
   return favorites.length ? (
     <div className="flex flex-col items-center px-8 py-4 bg-blue-950 w-11/12 mx-auto my-28 rounded-xl">
@@ -35,3 +35,4 @@ import Link from "next/link";
 import Image from "next/image";
 import FavoriteButton from "../animes/all/[order]/[animeID]/favoriteButton";
 import { Anime } from "@/interfaces";
+import { useEffect } from "react";

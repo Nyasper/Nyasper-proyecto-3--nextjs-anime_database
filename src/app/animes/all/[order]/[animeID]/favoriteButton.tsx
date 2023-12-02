@@ -51,4 +51,4 @@ interface props{
 }
 
 import { Anime } from "@/interfaces";
-import { useState , useEffect } from "react"
+import { useState } from "react"

@@ -68,7 +68,7 @@ const links:linkInterface[] = [
       </li>
       <li className={menuActived?"fixed top-5 right-4 max-sm:mr-1":"ml-auto mr-10 max-sm:mr-1"}><Link href={'/favorites'}>FAVORITES</Link></li>
       </ul>
-      <div className="fixed z-10 w-full h-screen" onClick={()=>menuActived?clickMenu():null}></div>
+      {menuActived ? <div className="fixed z-10 w-full h-screen" onClick={()=>menuActived?clickMenu() : null }></div>:null}
     </nav>
   )
 }
