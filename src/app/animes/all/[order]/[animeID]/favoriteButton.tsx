@@ -1,19 +1,24 @@
 'use client'
 export default function FavoriteButton(props:props){
 
-  const [favorites, setFavorites] = useState<Anime[]>([]);
+  const [favorites, setFavorites] = useState<Anime[]>([]); //favoritos actuales
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     //Obtener los favoritos desde LocalStorage
     const favoritesJSON = localStorage.getItem('favorites');
     const parsedFavorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
     setFavorites(parsedFavorites);
-    
-}, []);
+
+    const isFavorite = favorites.some((fav) => fav.id == props.mediaInfo.id);
+    setFavorite(isFavorite);
+
+}, [favorites, props.mediaInfo.id]);
+
   
   // Inicializa el estado de 'favorite' de cada boton en función de si props.mediaInfo está en la lista de favoritos
-  const isFavorite = favorites.some((fav) => fav.id == props.mediaInfo.id);
-  const [favorite, setFavorite] = useState(isFavorite);
+   //boolean, 
+
 
   const addFavorite = (anime:Anime)=>{
 
@@ -33,10 +38,11 @@ export default function FavoriteButton(props:props){
 
 
     else {
+      //si el favorita ya esta guardado, lo elimina
       const favoritesJSON = localStorage.getItem('favorites');
       const favorites: Anime[] = favoritesJSON ? JSON.parse(favoritesJSON) : [];
       const updatedFavorites = favorites.filter((fav) => fav.id != anime.id);
-  
+
       // Almacena la lista actualizada en el almacenamiento local
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     }

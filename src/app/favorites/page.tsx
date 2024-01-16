@@ -42,4 +42,4 @@ import { useEffect , useState } from "react"
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "../animes/all/[order]/[animeID]/favoriteButton";
-import { Anime ,  } from "@/interfaces";
+import { Anime  } from "@/interfaces";
