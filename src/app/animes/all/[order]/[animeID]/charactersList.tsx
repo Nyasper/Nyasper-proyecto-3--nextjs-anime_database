@@ -6,11 +6,13 @@ export default function CharactersList(props:props){
       {props.Page.media[0].characters.nodes.map(character=>(
         <li key={character.id}>
           <p className="text-lg lg:text-center py-1">{character.name.full}</p>
-          <Link className="" href={`/${props.mediaType}/all/${props.order}/${props.mediaID}/${character.id}`}>
+          <Link className="w-56 h-80 block relative max-lg:w-40 max-lg:h-72" href={`/${props.mediaType}/all/${props.order}/${props.mediaID}/${character.id}`}>
             <Image
               src={character.image.large?character.image.large:"/media-image.jpg"}
-              width={208}
-              height={280}
+              className="h-auto object-cover"
+              fill
+              sizes="230"
+              priority
               alt={`${character.name.full} image`}
             />
             </Link>

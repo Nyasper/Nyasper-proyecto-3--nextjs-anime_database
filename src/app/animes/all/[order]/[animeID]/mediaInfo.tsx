@@ -4,10 +4,11 @@ export default async function MediaInfo(props:props){
     <div className="w-full h-max p-2 my-6">
     <h2 className="text-5xl text-center">{props.Page.media[0].title.romaji}</h2>
       <Image
-        className="mx-auto my-8"
+        className="mx-auto my-8 w-auto"
         src={props.Page.media[0].bannerImage?props.Page.media[0].bannerImage:"/cover-image.png"}
+        priority
         width={800}
-        height={400}
+        height={0}
         alt={`${props.Page.media[0].title.romaji} banner image`}
       />
     </div>

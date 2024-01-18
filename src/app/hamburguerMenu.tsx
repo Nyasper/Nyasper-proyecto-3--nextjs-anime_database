@@ -23,4 +23,3 @@ return (
 
 
 import { propsState } from "@/interfaces"
-import { MouseEventHandler, useState } from "react"

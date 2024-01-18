@@ -10,10 +10,11 @@ export default function AnimeList(props: props) {
           {props.getAllAnimes.Page.media?.map((animes: Anime) => (
             <li key={animes.id} className="flex flex-col gap-2 items-center w-56 h-96 overflow-auto max-lg:w-40 max-lg:h-72">
               <span className="max-h-5 text-center" title={animes.title.romaji}>{animes.title.romaji}</span>
-              <Link className="w-56 h-80 relative object-cover max-lg:w-40 max-lg:h-72" href={`/animes/all/${props.order}/${animes.id}`}>
+              <Link className="w-56 h-80 relative max-lg:w-40 max-lg:h-72" href={`/animes/all/${props.order}/${animes.id}`}>
                 <Image
                   src={animes.coverImage.large?animes.coverImage.large:"/cover-image.png"}
                   fill
+                  priority
                   sizes="230"
                   alt={`${animes.title.romaji} image`}
                 />

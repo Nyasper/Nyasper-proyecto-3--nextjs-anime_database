@@ -1,6 +1,6 @@
 export default function CharacterInfo({props}:props){
   return(
-    <ul className="flex flex-col items-start justify-center lg:w-11/12 max-lg:w-full lg:m-8 lg:px-4 lg:pt-8 text-justify">
+    <ul className="flex flex-col items-start justify-start lg:w-11/12 max-lg:w-full lg:m-8 lg:px-4 lg:pt-8 text-justify overflow-auto p-4">
     
     <li className="p-1">
     {props.name.first?(

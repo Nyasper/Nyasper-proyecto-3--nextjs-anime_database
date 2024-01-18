@@ -7,10 +7,7 @@ const nextConfig = {
         hostname: 's4.anilist.co',
       },
     ],
-  },
-  experimental: {
-    serverActions: true,
-  },
+  }
 }
 
 module.exports = nextConfig
